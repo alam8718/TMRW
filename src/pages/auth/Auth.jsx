@@ -1,7 +1,7 @@
 import {useMutation} from "@tanstack/react-query";
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import {mutationLogin} from "./mutationLogin";
+import {mutationLogin} from "./mutation";
 function Auth() {
   const {data, mutate} = useMutation({
     mutationKey: ["login"],
@@ -38,5 +38,3 @@ function Auth() {
 }
 
 export default Auth;
-
-
