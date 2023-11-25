@@ -61,7 +61,7 @@ export default function NavBar() {
               navbar ? "block" : "hidden"
             }`}>
             <ul className=" flex gap-28  ">
-              <li className="text-lg  font-semibold hover:bg-purple-600/70 px-4 rounded-lg py-1 duration-300 ">
+              <li className="text-lg  font-semibold hover:bg-gray-600 px-4 rounded-lg py-1 duration-300 ">
                 <NavLink
                   className={({isActive}) =>
                     isActive
@@ -72,7 +72,7 @@ export default function NavBar() {
                   Home
                 </NavLink>
               </li>
-              <li className="text-lg text-amber-400 font-semibold hover:bg-purple-600/70 px-4 rounded-lg py-1 duration-300 ">
+              <li className="text-lg text-amber-400 font-semibold hover:bg-gray-600 px-4 rounded-lg py-1 duration-300 ">
                 <NavLink
                   className={({isActive}) =>
                     isActive
@@ -90,7 +90,7 @@ export default function NavBar() {
           <Link
             to="/auth"
             className="px-4 py-2 text-white bg-blue-600 rounded-md shadow hover:bg-amber-500/80    ">
-            Auth
+            Login
           </Link>
         </div>
       </div>

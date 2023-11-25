@@ -7,7 +7,7 @@ export const mutationLogin = async () => {
       },
     }
   );
-  
+
   return await response.json();
 };
 
