@@ -10,11 +10,12 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import Auth from "./pages/auth/Auth.jsx";
+import Home from './pages/home/Home.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="/" element={<h1>Home</h1>} />
+      <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/rated" element={<h1>Rated page</h1>} />
     </Route>
