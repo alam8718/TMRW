@@ -10,7 +10,8 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import Auth from "./pages/auth/Auth.jsx";
-import Home from './pages/home/Home.jsx'
+import Home from "./pages/home/Home.jsx";
+import FetchingData from "./pages/home/FetchingData.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

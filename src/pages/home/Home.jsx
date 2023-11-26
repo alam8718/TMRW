@@ -1,55 +1,103 @@
-import React, {useState} from "react";
-import ColumnDisplay from "./ColumnDisplay";
-import {fetchMovies, fetchTvShows} from "./FetchingData";
-import {useQuery} from "@tanstack/react-query";
+import React, {useEffect, useState} from "react";
+import MovieDiaplay from "./MovieDiaplay";
+import TvDisplay from "./TvDisplay";
 
-export default function Home() {
-  const displaytype = {
-    Movies: "movies",
-    TvShows: "tvshows",
+function Home({movie}) {
+  const [movies, setMovies] = useState(null);
+  const [tvshows, setTvShows] = useState(null);
+  const [showWho, setShowWho] = useState("movies");
+
+  const handleShowMovies = () => {
+    setShowWho("movies");
   };
-  const [display, setDisplay] = useState("");
-  const {data: movieData, isLoading: isLoadingMovies} = useQuery({
-    queryKey: ["movies"],
-    queryFn: fetchMovies,
-  });
-  const {data: tvshowData, isLoading: isLoadingTvshows} = useQuery({
-    queryKey: ["tvshows"],
-    queryFn: fetchTvShows,
-  });
+  const handleTvShows = () => {
+    setShowWho("tvshows");
+  };
 
-  // data: tvshowsData it basically means giveing ar alternative variable name of this data variabke as 2 cases data is the same variable
-  // it's same like the importing of an component like this
-  // import {fetchData as dataFetch} from "somewhere" after this line we can use dataFetch name instand of using feeetchData.
+  useEffect(() => {
+    const getMovies = async () => {
+      try {
+        const response = await fetch(
+          "https://api.themoviedb.org/3/movie/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=1"
+        );
+        const data = await response.json();
+        setMovies(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const getTvShows = async () => {
+      try {
+        const response = await fetch(
+          "https://api.themoviedb.org/3/tv/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=1"
+        );
+        const data = await response.json();
+        setTvShows(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
+    getMovies();
+    getTvShows();
+  }, []);
   return (
     <>
-      <div className="flex justify-center mt-4 ">
+      {/* top buttons  */}
+      <div className="flex justify-center mt-4  ">
         <button
-          className={`px-4 py-2  font-semibold  ${
-            display === displaytype.Movies ? "bg-blue-600 " : "bg-gray-400"
-          }`}
-          onClick={() => setDisplay(displaytype.Movies)}>
+          className={
+            showWho === "movies"
+              ? `bg-blue-500 px-4 py-2 font-semibold`
+              : `bg-gray-300 px-4 py-2 font-semibold`
+          }
+          onClick={handleShowMovies}>
           Movies
         </button>
         <button
-          className={`px-4 py-2  font-semibold ${
-            display === displaytype.TvShows ? "bg-blue-600 " : "bg-gray-400"
-          }`}
-          onClick={() => setDisplay(displaytype.TvShows)}>
+          className={
+            showWho === "tvshows"
+              ? `bg-blue-500 px-4 py-2 font-semibold`
+              : `bg-gray-300 px-4 py-2 font-semibold`
+          }
+          onClick={handleTvShows}>
           TvShows
         </button>
       </div>
 
-      {
-        <div>
-          {display === "movies" ? (
-            <ColumnDisplay data={movieData.results} type="movies" />
-          ) : (
-            <ColumnDisplay data={tvshowData.results} type="tvshows" />
-          )}
-        </div>
-      }
+      <div className="my-12 flex flex-wrap justify-center gap-4 md:gap-10 container mx-auto ">
+        {showWho === "movies" ? (
+          <>
+            {movies ? (
+              movies.map((movie, index) => (
+                <>
+                  <div key={index}>
+                    <MovieDiaplay movie={movie} />
+                  </div>
+                </>
+              ))
+            ) : (
+              <p>Loading....</p>
+            )}
+          </>
+        ) : (
+          <>
+            {tvshows ? (
+              tvshows.map((show, index) => (
+                <>
+                  <div key={index}>
+                    <TvDisplay show={show} />
+                  </div>
+                </>
+              ))
+            ) : (
+              <p>Loading....</p>
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 }
+
+export default Home;
