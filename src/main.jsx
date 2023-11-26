@@ -11,7 +11,8 @@ import {
 import Layout from "./Layout.jsx";
 import Auth from "./pages/auth/Auth.jsx";
 import Home from "./pages/home/Home.jsx";
-import FetchingData from "./pages/home/FetchingData.jsx";
+import Movie from "./pages/Movie/Movie.jsx";
+import TvShow from "./pages/TvShow/TvShow.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,8 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/rated" element={<h1>Rated page</h1>} />
+      <Route path="/movie/:id" element={<Movie />} />
+      <Route path="/tvshow/:id" element={<TvShow />} />
     </Route>
   )
 );
@@ -29,8 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      {/* <App /> */}
-      {/* <Navbar /> */}
+     
     </QueryClientProvider>
   </React.StrictMode>
 );

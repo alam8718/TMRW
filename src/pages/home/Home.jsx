@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
 import MovieDiaplay from "./MovieDiaplay";
 import TvDisplay from "./TvDisplay";
+import {Link} from "react-router-dom";
+import Movie from "../Movie/Movie";
+import TvShow from "../TvShow/TvShow";
 
 function Home({movie}) {
   const [movies, setMovies] = useState(null);
@@ -71,9 +74,11 @@ function Home({movie}) {
             {movies ? (
               movies.map((movie, index) => (
                 <>
-                  <div key={index}>
-                    <MovieDiaplay movie={movie} />
-                  </div>
+                  <Link to={`/movie/${movie.id}`}>
+                    <div key={index}>
+                      <MovieDiaplay movie={movie}  />
+                    </div>
+                  </Link>
                 </>
               ))
             ) : (
@@ -85,9 +90,11 @@ function Home({movie}) {
             {tvshows ? (
               tvshows.map((show, index) => (
                 <>
-                  <div key={index}>
-                    <TvDisplay show={show} />
-                  </div>
+                  <Link to={`/tvshow/${show.id}`}>
+                    <div key={index}>
+                      <TvDisplay show={show}   />
+                    </div>
+                  </Link>
                 </>
               ))
             ) : (
