@@ -26,3 +26,4 @@ dist-ssr
 src/pages/auth/mutation.js
 src/pages/home/FetchingData.js
 src/pages/Movie/moviedata.js
+src/pages/TvShow/tvshowsData.js
