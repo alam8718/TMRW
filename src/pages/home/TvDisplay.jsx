@@ -4,7 +4,7 @@ function TvDisplay({show}) {
   return (
     <>
       <div className="shadow-xl h-[670px] overflow-hidden p-4 ">
-        <div className="w-[300px] md:w-[400px] container mx-auto  flex flex-col gap-2">
+        <div className="w-[300px]  container mx-auto  flex flex-col gap-2">
           <div className="flex justify-center">
             <img
               className=" w-[300px]"
@@ -14,7 +14,7 @@ function TvDisplay({show}) {
           </div>
           <h1 className="text-xl font-bold ">{show.name}</h1>
           <p className="text-sm">{`Release Date: ${show.release_date} | Rating: ${show.vote_average}`}</p>
-          <p className="text-justify text-[12px]  ">{show.overview}</p>
+          <p className="text-justify text-md  ">{show.overview}</p>
         </div>
       </div>
     </>

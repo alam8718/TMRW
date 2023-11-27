@@ -4,7 +4,7 @@ function MovieDiaplay({movie}) {
   return (
     <>
       <div className="shadow-xl h-[700px] overflow-hidden p-4 ">
-        <div className="w-[300px] md:w-[350px] container mx-auto  flex flex-col gap-2">
+        <div className="w-[300px] container mx-auto  flex flex-col gap-2 ">
           <div className="flex justify-center">
             <img
               className=" w-[300px] "
@@ -16,7 +16,7 @@ function MovieDiaplay({movie}) {
           <p className="text-sm">{`Release Date: ${movie.release_date} | Rating: ${movie.vote_average}`}</p>
           <p className="text-justify text-md  ">{`${movie.overview.slice(
             0,
-            250
+            200
           )}... `}</p>
         </div>
       </div>
