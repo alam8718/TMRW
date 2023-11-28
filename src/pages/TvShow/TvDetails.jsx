@@ -1,8 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Accordian from "./Accordian";
 
 function TvDetails({data}) {
   const link = data.homepage;
+
+  const SeasonInfo = data.seasons.map((season) => {});
+
   return (
     <>
       <div className="">
@@ -11,7 +15,7 @@ function TvDetails({data}) {
         </Link>
         <p className="border-b-2 pt-10 border-b-gray-00"></p>
       </div>
-      <div className="mt-4 md:mt-10">
+      <div className="my-6 md:mt-10">
         <ul className="flex flex-col  gap-4">
           <li className="flex gap-2">
             <p className="font-semibold">Is the movie for Adults:</p>
@@ -34,20 +38,16 @@ function TvDetails({data}) {
             {data.first_air_date}
           </li>
           <li className="flex gap-2">
-            <p className="font-semibold">Number of Seasons: </p>
-            {data.number_of_seasons}
-          </li>
-          <li className="flex gap-2">
-            <p className="font-semibold">Number of Episords:</p>
-            {data.number_of_episords}
-          </li>
-          <li className="flex gap-2">
             <p className="font-semibold">Vote Average:</p>
             {data.vote_average}
           </li>
           <li className="flex gap-2">
-            <p className="font-semibold">Language: </p>
-            {data.original_language}
+            <p className="font-semibold ">Language: </p>
+            <p className="uppercase">{data.original_language}</p>
+          </li>
+          <li className="">
+            <p className="font-semibold">Number of Seasons: </p>
+            <Accordian info={data.seasons} />
           </li>
         </ul>
       </div>

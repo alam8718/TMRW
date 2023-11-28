@@ -32,7 +32,7 @@ function Home({movie}) {
     const getTvShows = async () => {
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/tv/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=1"
+          "https://api.themoviedb.org/3/tv/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=2"
         );
         const data = await response.json();
         setTvShows(data.results);

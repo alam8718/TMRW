@@ -21,8 +21,8 @@ function TvShow() {
 
   return (
     <>
-      <div className="my-20  overflow-hidden p-4  mx-10 ">
-        <div className=" container mx-auto  flex border flex-col md:flex-row md:gap-10 gap-2 p-10">
+      <div className="mt-10  overflow-hidden p-4 border mx-10 ">
+        <div className=" container mx-auto  flex  flex-col md:flex-row md:gap-10 gap-2 p-10">
           <div className="w-[400px]  flex justify-center">
             <img
               className=""
