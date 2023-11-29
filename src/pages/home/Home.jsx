@@ -8,6 +8,15 @@ function Home({movie}) {
   const [movies, setMovies] = useState(null);
   const [tvshows, setTvShows] = useState(null);
   const [showWho, setShowWho] = useState("movies");
+  const [count, setCount] = useState(1);
+
+  const nextPage = () => {
+    setCount(count + 1);
+  };
+  console.log(count);
+  const prevPage = () => {
+    setCount(count - 1);
+  };
 
   const handleShowMovies = () => {
     setShowWho("movies");
@@ -20,7 +29,9 @@ function Home({movie}) {
     const getMovies = async () => {
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=1"
+          `https://api.themoviedb.org/3/movie/popular?api_key=${
+            import.meta.env.VITE_API_KEY
+          }&language=en-US&page=${count}`
         );
         const data = await response.json();
         setMovies(data.results);
@@ -31,7 +42,9 @@ function Home({movie}) {
     const getTvShows = async () => {
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/tv/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=2"
+          `https://api.themoviedb.org/3/tv/popular?api_key=${
+            import.meta.env.VITE_API_KEY
+          }&language=en-US&page=${count}`
         );
         const data = await response.json();
         setTvShows(data.results);
@@ -42,7 +55,7 @@ function Home({movie}) {
 
     getMovies();
     getTvShows();
-  }, []);
+  }, [count]);
 
   return (
     <>
@@ -104,6 +117,29 @@ function Home({movie}) {
             )}
           </>
         )}
+      </div>
+
+      {/* page change  */}
+
+      <div className="my-20 ">
+        <div className="flex justify-center gap-60">
+          <button
+            className={`px-8 py-1 transition-all duration-300  rounded-md ${
+              count < 1 ? "bg-amber-400/60 " : " bg-amber-400 "
+            }`}
+            onClick={prevPage}
+            disabled={count < 1}>
+            Previous
+          </button>
+          <button
+            className={`px-8 py-1 transition-all duration-300  rounded-md ${
+              count > 9 ? "bg-amber-400/60 " : " bg-amber-400 "
+            }`}
+            onClick={nextPage}
+            disabled={count > 9}>
+            Next
+          </button>
+        </div>
       </div>
     </>
   );

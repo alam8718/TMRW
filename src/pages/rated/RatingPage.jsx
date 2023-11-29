@@ -54,7 +54,7 @@ function RatingPage() {
   return (
     <>
       {/* top buttons  */}
-      <div className="mx-10 sm:container sm:mx-auto  mt-10  ">
+      <div className=" container mx-auto sm:mx-20  mt-10  ">
         <button
           className={
             showWho === "movies"
@@ -76,7 +76,7 @@ function RatingPage() {
       </div>
 
       {/* rated header  */}
-      <div className="flex justify-center border mx-10 mt-10">
+      <div className="flex justify-center border mx-20 mt-10">
         {showWho === "movies" ? (
           <h1 className="text-4xl py-4">Rated Movies</h1>
         ) : (
@@ -96,7 +96,7 @@ function RatingPage() {
                     </div>
                   </Link>
                   <div>
-                    <h1 className="mt-4 px-3 py-2 border-2">
+                    <h1 className="mt-4 w-[50%] px-3 py-2 bg-green-500 text-white font-semibold flex items-center  ">
                       Your Rating: {movie.rating}
                     </h1>
                   </div>
@@ -117,7 +117,7 @@ function RatingPage() {
                     </div>
                   </Link>
                   <div>
-                    <h1 className="mt-4 px-3 py-2 border-2">
+                  <h1 className="mt-4 w-[50%] px-3 py-2 bg-green-500 text-white font-semibold flex items-center  ">
                       Your Rating: {show.rating}
                     </h1>
                   </div>

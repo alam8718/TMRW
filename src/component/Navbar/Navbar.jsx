@@ -1,9 +1,18 @@
 import {useState} from "react";
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import {BiCameraMovie} from "react-icons/bi";
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const [navbar, setNavbar] = useState(false);
+  const isLoggedIn = localStorage.getItem("guest_session_id") !== null;
+  const handleLogout = () => {
+    localStorage.removeItem("guest_session_id");
+    navigate("/auth");
+  };
+  const handleLogin = () => {
+    navigate("/auth");
+  };
 
   return (
     <nav className="w-full h-auto bg-[#37371F] shadow">
@@ -90,7 +99,11 @@ export default function NavBar() {
           <Link
             to="/auth"
             className="px-4 py-2 text-white bg-blue-600 rounded-md shadow hover:bg-amber-500/80    ">
-            Login
+            {isLoggedIn ? (
+              <button onClick={handleLogout}>Log Out</button>
+            ) : (
+              <button onClick={handleLogin}>Login</button>
+            )}
           </Link>
         </div>
       </div>

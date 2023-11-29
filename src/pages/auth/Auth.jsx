@@ -1,7 +1,6 @@
 // import {useMutation} from "@tanstack/react-query";
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-// import {mutationLogin} from "./mutation";
 function Auth() {
   const [guestSeesion, setGuestSession] = useState("");
 
@@ -15,7 +14,6 @@ function Auth() {
         );
         if (response.ok) {
           const data = await response.json();
-          setGuestSession(data.guest_session_id);
           localStorage.setItem("guest_session_id", data.guest_session_id);
         }
       } catch (error) {
