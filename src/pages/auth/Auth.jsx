@@ -1,18 +1,33 @@
-import {useMutation} from "@tanstack/react-query";
-import React from "react";
+// import {useMutation} from "@tanstack/react-query";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {mutationLogin} from "./mutation";
+// import {mutationLogin} from "./mutation";
 function Auth() {
-  const {data, mutate} = useMutation({
-    mutationKey: ["login"],
-    mutationFn: mutationLogin,
-  });
+  const [guestSeesion, setGuestSession] = useState("");
+
+  useEffect(() => {
+    const guestLogin = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/authentication/guest_session/new?api_key=${
+            import.meta.env.VITE_API_KEY
+          }`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setGuestSession(data.guest_session_id);
+          localStorage.setItem("guest_session_id", data.guest_session_id);
+        }
+      } catch (error) {
+        console.log("Error:Fetching Guest Seesion ", error.message);
+      }
+    };
+    guestLogin();
+  }, []);
 
   const navigate = useNavigate();
-
   const handleLogin = async () => {
-     mutate();
-    localStorage.setItem("guest_session_id", data.guest_session_id);
+    console.log(localStorage.getItem("guest_session_id"));
     navigate("/");
   };
 

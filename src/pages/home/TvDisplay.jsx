@@ -14,7 +14,10 @@ function TvDisplay({show}) {
           </div>
           <h1 className="text-xl font-bold ">{show.name}</h1>
           <p className="text-sm">{`Release Date: ${show.release_date} | Rating: ${show.vote_average}`}</p>
-          <p className="text-justify text-md  ">{show.overview}</p>
+          <p className="text-justify text-md  ">{`${show.overview.slice(
+            0,
+            180
+          )}... `}</p>
         </div>
       </div>
     </>

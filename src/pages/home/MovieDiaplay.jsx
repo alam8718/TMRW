@@ -20,6 +20,7 @@ function MovieDiaplay({movie}) {
           )}... `}</p>
         </div>
       </div>
+      
     </>
   );
 }

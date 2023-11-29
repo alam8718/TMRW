@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
-import MovieDiaplay from "./MovieDiaplay";
-import TvDisplay from "./TvDisplay";
 import {Link} from "react-router-dom";
-import Rated from "./Rated";
+import MovieDiaplay from "../home/MovieDiaplay";
+import TvDisplay from "../home/TvDisplay";
 
-function Home({movie}) {
-  const [movies, setMovies] = useState(null);
-  const [tvshows, setTvShows] = useState(null);
+function RatingPage() {
+  const [ratedMovies, setRatedMovies] = useState(null);
+  const [ratedTvShows, setRatedTvShows] = useState(null);
   const [showWho, setShowWho] = useState("movies");
 
   const handleShowMovies = () => {
@@ -17,37 +16,45 @@ function Home({movie}) {
   };
 
   useEffect(() => {
-    const getMovies = async () => {
+    const fetchRatedMovies = async () => {
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=1"
+          `https://api.themoviedb.org/3/guest_session/${localStorage.getItem(
+            "guest_session_id"
+          )}/rated/movies?language=en-US&page=1&sort_by=created_at.asc&api_key=${
+            import.meta.env.VITE_API_KEY
+          }`
         );
         const data = await response.json();
-        setMovies(data.results);
+        setRatedMovies(data.results);
       } catch (error) {
         console.log(error);
       }
     };
-    const getTvShows = async () => {
+    const fetchRatedTvshows = async () => {
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/tv/popular?api_key=36ba223f2c548f9ed94cf82a71a03277&language=en-US&page=2"
+          `https://api.themoviedb.org/3/guest_session/${localStorage.getItem(
+            "guest_session_id"
+          )}/rated/tv?language=en-US&page=1&sort_by=created_at.asc&api_key=${
+            import.meta.env.VITE_API_KEY
+          }`
         );
         const data = await response.json();
-        setTvShows(data.results);
+        setRatedTvShows(data.results);
       } catch (error) {
         console.log(error);
       }
     };
 
-    getMovies();
-    getTvShows();
+    fetchRatedMovies();
+    fetchRatedTvshows();
   }, []);
 
   return (
     <>
       {/* top buttons  */}
-      <div className="flex justify-center mt-4  ">
+      <div className="mx-10 sm:container sm:mx-auto  mt-10  ">
         <button
           className={
             showWho === "movies"
@@ -68,18 +75,31 @@ function Home({movie}) {
         </button>
       </div>
 
+      {/* rated header  */}
+      <div className="flex justify-center border mx-10 mt-10">
+        {showWho === "movies" ? (
+          <h1 className="text-4xl py-4">Rated Movies</h1>
+        ) : (
+          <h1 className="text-4xl py-4">Rated TV Shows</h1>
+        )}
+      </div>
+
       <div className="my-12 flex flex-wrap justify-center gap-4 md:gap-10 container mx-auto ">
         {showWho === "movies" ? (
           <>
-            {movies ? (
-              movies.map((movie, index) => (
+            {ratedMovies ? (
+              ratedMovies.map((movie, index) => (
                 <div key={index} className="flex flex-col">
                   <Link to={`/movie/${movie.id}`}>
                     <div>
                       <MovieDiaplay movie={movie} />
                     </div>
                   </Link>
-                  <Rated type="movies" id={movie.id} />
+                  <div>
+                    <h1 className="mt-4 px-3 py-2 border-2">
+                      Your Rating: {movie.rating}
+                    </h1>
+                  </div>
                 </div>
               ))
             ) : (
@@ -88,15 +108,19 @@ function Home({movie}) {
           </>
         ) : (
           <>
-            {tvshows ? (
-              tvshows.map((show, index) => (
+            {ratedTvShows ? (
+              ratedTvShows.map((show, index) => (
                 <div key={index} className="flex flex-col">
                   <Link to={`/tvshow/${show.id}`}>
                     <div>
                       <TvDisplay show={show} />
                     </div>
                   </Link>
-                  <Rated type="tvshow" id={show.id} />
+                  <div>
+                    <h1 className="mt-4 px-3 py-2 border-2">
+                      Your Rating: {show.rating}
+                    </h1>
+                  </div>
                 </div>
               ))
             ) : (
@@ -109,4 +133,4 @@ function Home({movie}) {
   );
 }
 
-export default Home;
+export default RatingPage;

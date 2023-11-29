@@ -5,7 +5,6 @@ import Accordian from "./Accordian";
 function TvDetails({data}) {
   const link = data.homepage;
 
-  const SeasonInfo = data.seasons.map((season) => {});
 
   return (
     <>

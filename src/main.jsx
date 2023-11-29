@@ -13,13 +13,14 @@ import Auth from "./pages/auth/Auth.jsx";
 import Home from "./pages/home/Home.jsx";
 import Movie from "./pages/Movie/Movie.jsx";
 import TvShow from "./pages/TvShow/TvShow.jsx";
+import RatingPage from "./pages/rated/RatingPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
-      <Route path="/rated" element={<h1>Rated page</h1>} />
+      <Route path="/rated" element={<RatingPage />} />
       <Route path="/movie/:id" element={<Movie />} />
       <Route path="/tvshow/:id" element={<TvShow />} />
     </Route>

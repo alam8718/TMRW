@@ -5,8 +5,8 @@ function Accordian({info}) {
   return (
     <>
       <div className="h-[200px] overflow-y-scroll">
-        {info.map((season) => (
-          <AccordianCard season={season} />
+        {info.map((season, index) => (
+          <AccordianCard key={index} season={season} />
         ))}
       </div>
     </>
