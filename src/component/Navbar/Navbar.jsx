@@ -69,7 +69,7 @@ export default function NavBar() {
             className={`flex-1  justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
               navbar ? "block" : "hidden"
             }`}>
-            <ul className="py-10 flex gap-10 flex-col md:flex-row items-center ">
+            <ul className="py-10 md:py-0 flex gap-10 flex-col md:flex-row items-center ">
               <li className="text-lg  font-semibold hover:bg-gray-600 px-4 rounded-lg py-1 duration-300 ">
                 <NavLink
                   className={({isActive}) =>
