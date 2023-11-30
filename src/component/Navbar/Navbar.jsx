@@ -15,7 +15,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="w-full h-auto bg-[#37371F] shadow">
+    <nav className="w-full h-auto bg-[#37371F] shadow ">
       <div className="justify-between px-4 mx-auto  md:items-center md:flex md:px-12">
         <div>
           <div className="flex items-center justify-between py-3 md:block">
@@ -66,10 +66,10 @@ export default function NavBar() {
         <div>
           {/* side bar for mobile  */}
           <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+            className={`flex-1  justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
               navbar ? "block" : "hidden"
             }`}>
-            <ul className=" flex gap-28  ">
+            <ul className="py-10 flex gap-10 flex-col md:flex-row items-center ">
               <li className="text-lg  font-semibold hover:bg-gray-600 px-4 rounded-lg py-1 duration-300 ">
                 <NavLink
                   className={({isActive}) =>
@@ -91,6 +91,17 @@ export default function NavBar() {
                   to="/rated">
                   Rated
                 </NavLink>
+              </li>
+              <li className="text-lg md:hidden text-amber-400 font-semibold  px-4 rounded-lg py-1 duration-300 ">
+                <Link
+                  to="/auth"
+                  className="px-4 py-2 text-white bg-blue-600 rounded-md shadow hover:bg-amber-500/80    ">
+                  {isLoggedIn ? (
+                    <button onClick={handleLogout}>Log Out</button>
+                  ) : (
+                    <button onClick={handleLogin}>Login</button>
+                  )}
+                </Link>
               </li>
             </ul>
           </div>

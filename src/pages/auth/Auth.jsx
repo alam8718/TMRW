@@ -2,8 +2,6 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 function Auth() {
-  const [guestSeesion, setGuestSession] = useState("");
-
   useEffect(() => {
     const guestLogin = async () => {
       try {
@@ -31,7 +29,7 @@ function Auth() {
 
   return (
     <>
-      <div className="min-h-screen flex justify-center items-center ">
+      <div className="h-auto flex justify-center items-baseline my-28">
         <div className=" rounded-md p-10  w-[90%] sm:w-[70%] md:w-[40%] flex flex-col items-center gap-10 shadow-xl  ">
           <div className="flex flex-col items-center gap-5">
             <h1 className="text-5xl ">Welcome!</h1>

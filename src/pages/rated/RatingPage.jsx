@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import MovieDiaplay from "../home/MovieDiaplay";
 import TvDisplay from "../home/TvDisplay";
+import Auth from "../auth/Auth";
 
 function RatingPage() {
   const [ratedMovies, setRatedMovies] = useState(null);
@@ -103,7 +104,7 @@ function RatingPage() {
                 </div>
               ))
             ) : (
-              <p>Loading....</p>
+              <p className="text-3xl">Login First ....... </p>
             )}
           </>
         ) : (
@@ -117,14 +118,14 @@ function RatingPage() {
                     </div>
                   </Link>
                   <div>
-                  <h1 className="mt-4 w-[50%] px-3 py-2 bg-green-500 text-white font-semibold flex items-center  ">
+                    <h1 className="mt-4 w-[50%] px-3 py-2 bg-green-500 text-white font-semibold flex items-center  ">
                       Your Rating: {show.rating}
                     </h1>
                   </div>
                 </div>
               ))
             ) : (
-              <p>Loading....</p>
+              <p className="text-3xl">Login First ....... </p>
             )}
           </>
         )}
